@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lash vibe by roya | کاشت و اکستنشن مژه تخصصی</title>
+    
+    <!-- Google Fonts: Vazirmatn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pink: '#f472b6',
+                            lightPink: '#fce7f3',
+                            rose: '#ec4899',
+                            purple: '#a855f7',
+                            darkPurple: '#581c87',
+                            darkBg: '#090514'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js for lightweight state management -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        [x-cloak] { 
+            display: none !important; 
+        }
+
+        :root {
+            --glow-color-1: rgba(244, 114, 182, 0.4);
+            --glow-color-2: rgba(236, 72, 153, 0.8);
+        }
+
+        .dark {
+            --glow-color-1: rgba(168, 85, 247, 0.5);
+            --glow-color-2: rgba(192, 132, 252, 0.9);
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        /* Gaussian Blur Pattern Overlay (30% Gaussian Blur effect) */
+        .pattern-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+            background-repeat: repeat;
+            background-size: 260px 260px;
+            filter: blur(12px); /* ~30% Gaussian Blur */
+            opacity: 0.35;
+            transform: scale(1.08); /* Prevents blur border edges */
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        /* Light Mode Leopard Pattern SVG Base64 */
+        .light .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='%23f472b6' fill-opacity='0.4' d='M25 15c-5 0-9 4-8 9 1 6 7 8 12 7 6-1 10-6 8-11-1-4-6-5-12-5zm45 10c-6 2-8 8-6 13 3 6 10 7 15 4 5-3 6-10 3-14-3-3-8-4-12-3zm-35 45c-7 1-11 7-9 13 2 7 9 10 16 7 6-2 8-9 6-15-2-4-8-6-13-5zm65 5c-5 0-10 5-9 11 1 7 8 10 14 8 6-2 9-8 7-14-2-4-7-5-12-5zm-30 25c-6 1-9 7-8 12 2 6 8 8 13 6 6-2 8-8 6-13-2-4-7-6-11-5z'/%3E%3Cpath fill='%23ec4899' fill-opacity='0.25' d='M15 40c-4 1-7 5-6 9 2 4 6 6 10 4 4-1 6-5 5-9-1-3-5-5-9-4zm70 20c-5 1-8 6-6 11 2 5 7 7 11 5 5-1 7-6 5-11-1-4-6-6-10-5zm-40 25c-4 1-6 5-5 9 1 5 6 7 10 5 4-2 6-6 4-10-1-3-5-5-9-4z'/%3E%3C/svg%3E");
+            background-color: #fdf2f8;
+        }
+
+        /* Dark Mode Leopard Pattern SVG (Neon Purple / Obsidian Black) */
+        .dark .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath fill='%23a855f7' fill-opacity='0.45' d='M25 15c-5 0-9 4-8 9 1 6 7 8 12 7 6-1 10-6 8-11-1-4-6-5-12-5zm45 10c-6 2-8 8-6 13 3 6 10 7 15 4 5-3 6-10 3-14-3-3-8-4-12-3zm-35 45c-7 1-11 7-9 13 2 7 9 10 16 7 6-2 8-9 6-15-2-4-8-6-13-5zm65 5c-5 0-10 5-9 11 1 7 8 10 14 8 6-2 9-8 7-14-2-4-7-5-12-5zm-30 25c-6 1-9 7-8 12 2 6 8 8 13 6 6-2 8-8 6-13-2-4-7-6-11-5z'/%3E%3Cpath fill='%23c084fc' fill-opacity='0.3' d='M15 40c-4 1-7 5-6 9 2 4 6 6 10 4 4-1 6-5 5-9-1-3-5-5-9-4zm70 20c-5 1-8 6-6 11 2 5 7 7 11 5 5-1 7-6 5-11-1-4-6-6-10-5zm-40 25c-4 1-6 5-5 9 1 5 6 7 10 5 4-2 6-6 4-10-1-3-5-5-9-4z'/%3E%3C/svg%3E");
+            background-color: #080311;
+        }
+
+        /* Glassmorphism Frame Containers */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 16px 36px -8px rgba(244, 114, 182, 0.12);
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .dark .glass-card {
+            background: rgba(18, 11, 32, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(168, 85, 247, 0.22);
+            box-shadow: 0 16px 36px -8px rgba(168, 85, 247, 0.2);
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+
+        @keyframes floatGentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(236, 72, 153, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.5); }
+        }
+
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        .animate-float-subtle {
+            animation: floatGentle 4s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .hover-lift {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 40px -10px rgba(236, 72, 153, 0.25);
+        }
+
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.35);
+        }
+
+        /* iOS Liquid Glass Buttons */
+        .liquid-btn {
+            position: relative;
+            overflow: hidden;
+            border-radius: 9999px;
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-weight: 600;
+        }
+
+        .liquid-btn-primary {
+            background: linear-gradient(135deg, rgba(244, 114, 182, 0.9), rgba(236, 72, 153, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.35), inset 0 2px 4px rgba(255, 255, 255, 0.7);
+            color: #ffffff;
+        }
+
+        .dark .liquid-btn-primary {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.9), rgba(126, 34, 206, 0.95));
+            border: 1px solid rgba(216, 180, 254, 0.5);
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            color: #ffffff;
+        }
+
+        .liquid-btn-secondary {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(244, 114, 182, 0.4);
+            color: #db2777;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .dark .liquid-btn-secondary {
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #e9d5ff;
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Glossy reflection effect overlay */
+        .liquid-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+            transition: left 0.75s ease;
+        }
+
+        .liquid-btn:hover::before {
+            left: 120%;
+        }
+
+        .liquid-btn:hover {
+            transform: translateY(-2px) scale(1.025);
+            box-shadow: 0 12px 28px rgba(236, 72, 153, 0.45);
+        }
+
+        .dark .liquid-btn:hover {
+            box-shadow: 0 12px 28px rgba(168, 85, 247, 0.55);
+        }
+
+        .liquid-btn:active {
+            transform: translateY(1px) scale(0.97);
+        }
+
+        /* Logo Shine Glow Animation */
+        @keyframes eyeGlow {
+            0%, 100% { filter: drop-shadow(0 0 4px var(--glow-color-1)); }
+            50% { filter: drop-shadow(0 0 12px var(--glow-color-2)); }
+        }
+
+        .logo-glow {
+            animation: eyeGlow 3.5s infinite ease-in-out;
+        }
+    </style>
+    
+</head>
+<!-- Lenis Smooth Scroll CDN -->
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+</script>
+<body x-data="app" :class="darkMode ? 'dark bg-brand-darkBg text-purple-100' : 'light bg-pink-50 text-slate-800'" class="min-h-screen relative flex flex-col antialiased selection:bg-pink-400 selection:text-white">
+
+    <!-- 30% Blurred Leopard Background -->
+    <div class="pattern-bg"></div>
+
+    <!-- Toast Notification Container -->
+    <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300" x-show="toast.show" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 -translate-y-4" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-4" x-cloak>
+        <div class="glass-card px-6 py-3 rounded-full shadow-2xl border border-pink-400/50 flex items-center space-x-3 space-x-reverse text-sm font-semibold" :class="darkMode ? 'text-purple-200' : 'text-pink-900'">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span x-text="toast.message"></span>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-40 w-full px-4 py-3">
+        <div class="max-w-6xl mx-auto glass-card px-4 md:px-8 py-3.5 flex items-center justify-between animate-float-subtle">
+            
+            <!-- Logo & Brand Title -->
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer group" @click="activeTab = 'booking'">
+                <!-- Eye & Eyelash SVG Logo -->
+                <div class="w-11 h-11 rounded-2xl flex items-center justify-center bg-gradient-to-tr from-pink-300 to-rose-400 dark:from-purple-900 dark:to-purple-600 shadow-md logo-glow transition-transform group-hover:scale-105">
+                    <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                        <circle cx="12" cy="12" r="3.2" fill="currentColor" fill-opacity="0.3"></circle>
+                        <!-- Eyelashes -->
+                        <path d="M6 8.5L4 6.5" stroke-width="2"></path>
+                        <path d="M9 6.5L8 4" stroke-width="2"></path>
+                        <path d="M12 5.5V3" stroke-width="2"></path>
+                        <path d="M15 6.5L16 4" stroke-width="2"></path>
+                        <path d="M18 8.5L20 6.5" stroke-width="2"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-extrabold tracking-tight bg-gradient-to-r from-rose-500 to-pink-600 dark:from-purple-300 dark:to-purple-500 bg-clip-text text-transparent">
+                        Lash vibe by roya
+                    </h1>
+                    <p class="text-xs font-medium text-pink-600/80 dark:text-purple-300/80">
+                        کاشت و اکستنشن مژه تخصصی
+                    </p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-1 space-x-reverse font-medium text-sm">
+                <button @click="activeTab = 'booking'" :class="activeTab === 'booking' ? 'liquid-btn liquid-btn-primary px-4 py-2' : 'px-4 py-2 hover:text-pink-600 dark:hover:text-purple-300 transition'">
+                    رزرو نوبت
+                </button>
+                <button @click="activeTab = 'tracking'" :class="activeTab === 'tracking' ? 'liquid-btn liquid-btn-primary px-4 py-2' : 'px-4 py-2 hover:text-pink-600 dark:hover:text-purple-300 transition'">
+                    پیگیری سفارشات
+                </button>
+                <button @click="activeTab = 'services'" :class="activeTab === 'services' ? 'liquid-btn liquid-btn-primary px-4 py-2' : 'px-4 py-2 hover:text-pink-600 dark:hover:text-purple-300 transition'">
+                    خدمات و تعرفه‌ها
+                </button>
+                <button @click="activeTab = 'about'" :class="activeTab === 'about' ? 'liquid-btn liquid-btn-primary px-4 py-2' : 'px-4 py-2 hover:text-pink-600 dark:hover:text-purple-300 transition'">
+                    درباره و ارتباط با ما
+                </button>
+            </nav>
+
+            <!-- Quick Direct Call Icon + Theme Switcher -->
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <a href="tel:09939006148" class="liquid-btn liquid-btn-secondary p-2.5 rounded-full flex items-center justify-center text-pink-600 dark:text-purple-300 hover:scale-105" title="تماس مستقیم با پذیرش">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </a>
+
+                <button @click="toggleTheme()" class="liquid-btn liquid-btn-secondary p-2.5 rounded-full flex items-center justify-center transition-transform" title="تغییر حالت تم">
+                    <!-- Sun Icon (Light Mode) -->
+                    <svg x-show="!darkMode" class="w-5 h-5 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <!-- Moon Icon (Dark Mode) -->
+                    <svg x-show="darkMode" class="w-5 h-5 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" x-cloak>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Bar -->
+        <div class="md:hidden max-w-6xl mx-auto mt-2 glass-card p-1.5 flex justify-around text-xs font-semibold">
+            <button @click="activeTab = 'booking'" :class="activeTab === 'booking' ? 'liquid-btn liquid-btn-primary px-3 py-2' : 'px-2 py-2 text-slate-600 dark:text-purple-300'">
+                رزرو نوبت
+            </button>
+            <button @click="activeTab = 'tracking'" :class="activeTab === 'tracking' ? 'liquid-btn liquid-btn-primary px-3 py-2' : 'px-2 py-2 text-slate-600 dark:text-purple-300'">
+                پیگیری
+            </button>
+            <button @click="activeTab = 'services'" :class="activeTab === 'services' ? 'liquid-btn liquid-btn-primary px-3 py-2' : 'px-2 py-2 text-slate-600 dark:text-purple-300'">
+                تعرفه‌ها
+            </button>
+            <button @click="activeTab = 'about'" :class="activeTab === 'about' ? 'liquid-btn liquid-btn-primary px-3 py-2' : 'px-2 py-2 text-slate-600 dark:text-purple-300'">
+                ارتباط
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-8">
+
+        <section class="glass-card p-6 md:p-10 text-center relative overflow-hidden animate-float">
+            <div class="absolute -top-12 -right-12 w-48 h-48 bg-pink-300/30 dark:bg-purple-600/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+            <div class="absolute -bottom-12 -left-12 w-48 h-48 bg-rose-400/20 dark:bg-purple-900/40 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+
+            <div class="relative z-10 max-w-3xl mx-auto space-y-4">
+                <span class="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wide bg-pink-100 text-pink-700 dark:bg-purple-900/60 dark:text-purple-200 border border-pink-200 dark:border-purple-700 shadow-sm">
+                    ✨ تخصصی‌ترین مرکز زیبایی چشم و مژه
+                </span>
+                
+                <h2 class="text-2xl md:text-4xl font-black leading-tight bg-gradient-to-r from-pink-600 via-rose-500 to-purple-600 dark:from-purple-200 dark:via-purple-400 dark:to-pink-300 bg-clip-text text-transparent">
+                    نگاهی خیره‌کننده با اکستنشن مژه تخصصی 
+                </h2>
+
+                <p class="text-sm md:text-base leading-relaxed text-slate-600 dark:text-purple-200/90 font-medium">
+                    استفاده از متریال ابریشمی اورجینال، چسب‌های ضد حساسیت و تکنیک‌های مگاوالیوم و کلاسیک ویژه آناتومی چشم شما. رزرو آنلاین طی ۱۰ روز آینده به صورت کاملاً هماهنگ با تقویم شمسی.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    <button @click="activeTab = 'booking'" class="liquid-btn liquid-btn-primary px-7 py-3 text-sm md:text-base flex items-center space-x-2 space-x-reverse">
+                        <span>رزرو آنلاین نوبت</span>
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    </button>
+                    <button @click="activeTab = 'tracking'" class="liquid-btn liquid-btn-secondary px-6 py-3 text-sm md:text-base">
+                        پیگیری نوبت قبلی
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section x-show="activeTab === 'booking'" class="space-y-6">
+            <div class="glass-card p-6 md:p-8">
+                
+                <!-- Wizard Header / Steps Indicator -->
+                <div class="mb-8 border-b border-pink-200/60 dark:border-purple-800/60 pb-6">
+                    <div class="flex justify-between items-center max-w-xl mx-auto text-xs md:text-sm font-bold">
+                        <div class="flex items-center space-x-2 space-x-reverse" :class="bookingStep >= 1 ? 'text-pink-600 dark:text-purple-400' : 'text-slate-400'">
+                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white transition-colors" :class="bookingStep >= 1 ? 'bg-pink-500 dark:bg-purple-600 shadow-md' : 'bg-slate-300 dark:bg-slate-700'">۱</span>
+                            <span>انتخاب خدمت</span>
+                        </div>
+                        <div class="h-0.5 flex-1 mx-2 transition-colors" :class="bookingStep >= 2 ? 'bg-pink-500 dark:bg-purple-600' : 'bg-slate-200 dark:bg-slate-700'"></div>
+                        <div class="flex items-center space-x-2 space-x-reverse" :class="bookingStep >= 2 ? 'text-pink-600 dark:text-purple-400' : 'text-slate-400'">
+                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white transition-colors" :class="bookingStep >= 2 ? 'bg-pink-500 dark:bg-purple-600 shadow-md' : 'bg-slate-300 dark:bg-slate-700'">۲</span>
+                            <span>تاریخ و ساعت (۱۰ روز آینده)</span>
+                        </div>
+                        <div class="h-0.5 flex-1 mx-2 transition-colors" :class="bookingStep >= 3 ? 'bg-pink-500 dark:bg-purple-600' : 'bg-slate-200 dark:bg-slate-700'"></div>
+                        <div class="flex items-center space-x-2 space-x-reverse" :class="bookingStep >= 3 ? 'text-pink-600 dark:text-purple-400' : 'text-slate-400'">
+                            <span class="w-7 h-7 rounded-full flex items-center justify-center text-xs text-white transition-colors" :class="bookingStep >= 3 ? 'bg-pink-500 dark:bg-purple-600 shadow-md' : 'bg-slate-300 dark:bg-slate-700'">۳</span>
+                            <span>اطلاعات شما</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 1: SELECT SERVICE -->
+                <div x-show="bookingStep === 1" class="space-y-6">
+                    <div class="text-center space-y-1">
+                        <h3 class="text-xl font-bold">انتخاب نوع خدمت مژه</h3>
+                        <p class="text-xs text-slate-500 dark:text-purple-300">لطفاً یکی از خدمات زیر را جهت رزرو زمان تعیین کنید</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <template x-for="service in services" :key="service.id">
+                            <div @click="selectedService = service" 
+                                 :class="selectedService?.id === service.id ? 'ring-2 ring-pink-500 dark:ring-purple-400 bg-pink-50/90 dark:bg-purple-950/70 scale-[1.02]' : ''"
+                                 class="glass-card hover-lift p-5 cursor-pointer flex flex-col justify-between space-y-4">
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="font-bold text-base text-pink-600 dark:text-purple-300" x-text="service.name"></h4>
+                                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-100 dark:bg-purple-900 text-pink-700 dark:text-purple-200 font-semibold" x-text="service.duration"></span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 dark:text-purple-200/80 leading-relaxed" x-text="service.desc"></p>
+                                </div>
+                                <div class="pt-3 border-t border-slate-200/50 dark:border-purple-800/40 flex justify-between items-center">
+                                    <span class="text-xs text-slate-400 dark:text-purple-300">تخمین هزینه:</span>
+                                    <span class="font-extrabold text-pink-600 dark:text-purple-300 text-sm" x-text="service.price + ' تومان'"></span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="flex justify-end pt-4">
+                        <button @click="if(selectedService) bookingStep = 2" :disabled="!selectedService" :class="!selectedService ? 'opacity-50 cursor-not-allowed' : ''" class="liquid-btn liquid-btn-primary px-8 py-3">
+                            مرحله بعدی: انتخاب زمان ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: SELECT DATE (NEXT 10 DAYS JALALI) & TIME SLOT -->
+                <div x-show="bookingStep === 2" class="space-y-6" x-cloak>
+                    <div class="text-center space-y-1">
+                        <h3 class="text-xl font-bold">انتخاب روز و ساعت حضور (۱۰ روز آینده)</h3>
+                        <p class="text-xs text-slate-500 dark:text-purple-300">تاریخ‌ها به تقویم شمسی به روز شده‌اند | ساعت کاری: ۱۰:۰۰ الی ۲۰:۰۰</p>
+                    </div>
+
+                    <!-- Date Chips Bar (10 Days Scrollable) -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold text-slate-600 dark:text-purple-200">انتخاب روز (از امروز تا ۱۰ روز بعدی):</label>
+                        <div class="flex space-x-2 space-x-reverse overflow-x-auto pb-3 pt-1 scrollbar-none">
+                            <template x-for="day in availableDates" :key="day.isoDate">
+                                <button @click="selectedDateObj = day; checkSlotAvailability();" 
+                                        :class="selectedDateObj?.isoDate === day.isoDate ? 'liquid-btn liquid-btn-primary px-4 py-3 text-xs ring-2 ring-pink-400 scale-105' : 'glass-card px-4 py-3 text-xs font-medium hover:bg-pink-100/60 dark:hover:bg-purple-900/60'"
+                                        class="flex-shrink-0 flex flex-col items-center min-w-[100px] transition-transform">
+                                    <span class="text-[11px] opacity-80" x-text="day.dayName"></span>
+                                    <span class="font-bold mt-1 text-xs" x-text="day.jalali"></span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Time Slots Selector -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label class="block text-xs font-bold text-slate-600 dark:text-purple-200">
+                                ساعت‌های قابل رزرو برای تاریخ <span class="text-pink-600 dark:text-purple-300" x-text="selectedDateObj?.fullJalali"></span>:
+                            </label>
+                            <span class="text-[11px] text-pink-600 dark:text-purple-400 font-medium">هر نوبت ۲ ساعت</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                            <template x-for="slot in activeTimeSlots" :key="slot.id">
+                                <button @click="if(!slot.isBooked) selectedTime = slot.label" 
+                                        :disabled="slot.isBooked"
+                                        :class="{
+                                            'bg-slate-200/80 dark:bg-slate-800/80 text-slate-400 cursor-not-allowed border-dashed border border-slate-300 dark:border-slate-700': slot.isBooked,
+                                            'liquid-btn liquid-btn-primary ring-2 ring-pink-400 scale-105': selectedTime === slot.label && !slot.isBooked,
+                                            'glass-card hover-lift text-slate-700 dark:text-purple-200': selectedTime !== slot.label && !slot.isBooked
+                                        }"
+                                        class="py-3.5 px-2 rounded-2xl text-xs font-bold transition-all flex flex-col items-center justify-center space-y-1">
+                                    <span x-text="slot.label"></span>
+                                    <span x-text="slot.isBooked ? 'رزرو شده ❌' : 'آزاد ✅'" :class="slot.isBooked ? 'text-red-400 font-normal' : 'text-emerald-600 dark:text-emerald-400 font-normal'"></span>
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between pt-4 border-t border-slate-200/50 dark:border-purple-800/40">
+                        <button @click="bookingStep = 1" class="liquid-btn liquid-btn-secondary px-6 py-2.5 text-xs">
+                            بازگشت
+                        </button>
+                        <button @click="if(selectedDateObj && selectedTime) bookingStep = 3" :disabled="!selectedDateObj || !selectedTime" :class="(!selectedDateObj || !selectedTime) ? 'opacity-50 cursor-not-allowed' : ''" class="liquid-btn liquid-btn-primary px-8 py-2.5 text-xs">
+                            مرحله بعدی: اطلاعات ➔
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: CUSTOMER INFORMATION -->
+                <div x-show="bookingStep === 3" class="space-y-6" x-cloak>
+                    <div class="text-center space-y-1">
+                        <h3 class="text-xl font-bold">ثبت مشخصات مراجعه‌کننده</h3>
+                        <p class="text-xs text-slate-500 dark:text-purple-300">جهت نهایی‌سازی نوبت اطلاعات دقیق خود را وارد نمایید</p>
+                    </div>
+
+                    <!-- Summary Glass Card -->
+                    <div class="p-4 rounded-2xl bg-pink-100/60 dark:bg-purple-950/50 border border-pink-200 dark:border-purple-800/50 text-xs space-y-2 animate-float-subtle">
+                        <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">خدمت انتخابی:</span><span class="font-bold text-pink-600 dark:text-purple-300" x-text="selectedService?.name"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">تاریخ حضور:</span><span class="font-bold" x-text="selectedDateObj?.fullJalali"></span></div>
+                        <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">ساعت نوبت:</span><span class="font-bold text-pink-600 dark:text-purple-300" x-text="selectedTime"></span></div>
+                        <div class="flex justify-between border-t border-pink-200 dark:border-purple-800 pt-2"><span class="text-slate-500 dark:text-purple-300">ارائه‌دهنده خدمت:</span><span class="font-bold">رویا حسن‌زاده (متخصص اکستنشن مژه)</span></div>
+                    </div>
+
+                    <!-- Inputs Form -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold mb-1.5 text-slate-700 dark:text-purple-200">نام و نام خانوادگی <span class="text-red-500">*</span></label>
+                            <input type="text" x-model="customerName" placeholder="مثال: سارا محمدی" class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-500 text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold mb-1.5 text-slate-700 dark:text-purple-200">شماره تلفن همراه <span class="text-red-500">*</span></label>
+                            <input type="tel" x-model="customerPhone" placeholder="09123456789" dir="ltr" class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-500 text-sm text-right">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold mb-1.5 text-slate-700 dark:text-purple-200">توضیحات یا مدل مد نظر (اختیاری)</label>
+                            <textarea x-model="customerNotes" rows="3" placeholder=" ..." class="w-full px-4 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-500 text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between pt-4 border-t border-slate-200/50 dark:border-purple-800/40">
+                        <button @click="bookingStep = 2" class="liquid-btn liquid-btn-secondary px-6 py-2.5 text-xs">
+                            بازگشت
+                        </button>
+                        <button @click="submitBooking()" :disabled="!customerName || !customerPhone" :class="(!customerName || !customerPhone) ? 'opacity-50 cursor-not-allowed' : ''" class="liquid-btn liquid-btn-primary px-8 py-3 text-sm font-bold">
+                            ثبت نهایی و دریافت کد پیگیری ✨
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: RECEIPT & CONFIRMATION -->
+                <div x-show="bookingStep === 4" class="space-y-6 text-center" x-cloak>
+                    <div class="w-16 h-16 bg-emerald-100 dark:bg-emerald-950/80 text-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-lg ring-4 ring-emerald-400/20 animate-bounce">
+                        <svg class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    </div>
+
+                    <div class="space-y-1">
+                        <h3 class="text-2xl font-black text-emerald-600 dark:text-emerald-400">نوبت شما با موفقیت ثبت شد!</h3>
+                        <p class="text-xs text-slate-500 dark:text-purple-300">رسید نوبت شما صادره توسط Lash vibe by roya</p>
+                    </div>
+
+                    <!-- Receipt Card -->
+                    <div class="glass-card max-w-md mx-auto p-6 text-right space-y-4 relative overflow-hidden border-emerald-300/40 animate-float-subtle">
+                        <div class="flex justify-between items-center border-b border-slate-200 dark:border-purple-800 pb-3">
+                            <span class="text-xs text-slate-400">کد پیگیری اختصاصی:</span>
+                            <span class="font-mono text-base font-black text-pink-600 dark:text-purple-300 bg-pink-100 dark:bg-purple-900/60 px-3 py-1 rounded-xl" x-text="lastReceipt?.id"></span>
+                        </div>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">مراجعه‌کننده:</span><span class="font-bold" x-text="lastReceipt?.name"></span></div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-500 dark:text-purple-300">شماره تماس:</span>
+                                <a :href="'tel:' + lastReceipt?.phone" class="font-bold text-pink-600 dark:text-purple-300 hover:underline" x-text="lastReceipt?.phone" dir="ltr"></a>
+                            </div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">نوع خدمت:</span><span class="font-bold" x-text="lastReceipt?.service"></span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">تاریخ حضور:</span><span class="font-bold" x-text="lastReceipt?.date"></span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">ساعت نوبت:</span><span class="font-bold text-pink-600 dark:text-purple-300" x-text="lastReceipt?.time"></span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">متخصص مژه:</span><span class="font-bold">رویا حسن‌زاده</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500 dark:text-purple-300">وضعیت نوبت:</span><span class="font-bold text-emerald-600 dark:text-emerald-400">تأیید شده ✅</span></div>
+                        </div>
+
+                        <!-- Copy Button -->
+                        <button @click="copyToClipboard(lastReceipt?.id)" class="w-full liquid-btn liquid-btn-secondary py-2.5 text-xs flex items-center justify-center space-x-2 space-x-reverse">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                            <span>کپی کد پیگیری</span>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-center gap-3 pt-2">
+                        <button @click="resetBooking(); activeTab = 'tracking'" class="liquid-btn liquid-btn-primary px-6 py-2.5 text-xs">
+                            مشاهده در پیگیری سفارشات
+                        </button>
+                        <button @click="resetBooking()" class="liquid-btn liquid-btn-secondary px-6 py-2.5 text-xs">
+                            رزرو نوبت جدید
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section x-show="activeTab === 'tracking'" class="space-y-6" x-cloak>
+            <div class="glass-card p-6 md:p-8 space-y-6">
+                
+                <div class="text-center space-y-2 max-w-xl mx-auto">
+                    <h3 class="text-2xl font-extrabold">پیگیری سفارشات و رزرو نوبت</h3>
+                    <p class="text-xs text-slate-500 dark:text-purple-300">
+                        جهت پیگیری نوبت خود، کد پیگیری (مانند LV-1001) یا شماره موبایل ثبت شده را وارد نمایید.
+                    </p>
+                </div>
+
+                <!-- Search Input Bar -->
+                <div class="max-w-xl mx-auto flex gap-2">
+                    <input type="text" x-model="searchQuery" @keyup.enter="performSearch()" placeholder="کد پیگیری یا شماره موبایل..." class="flex-grow px-5 py-3 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-300 dark:border-purple-800 focus:outline-none focus:ring-2 focus:ring-pink-500 dark:focus:ring-purple-500 text-sm">
+                    <button @click="performSearch()" class="liquid-btn liquid-btn-primary px-6 py-3 text-sm flex items-center space-x-2 space-x-reverse">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <span>جستجو</span>
+                    </button>
+                </div>
+
+                <div class="text-center">
+                    <span class="text-[11px] text-pink-600 dark:text-purple-300 bg-pink-100/70 dark:bg-purple-900/40 px-3 py-1 rounded-full">
+                        💡 کد پیگیری تست: <strong class="font-mono">LV-1001</strong> یا شماره موبایل: <strong class="font-mono">09939006148</strong>
+                    </span>
+                </div>
+
+                <!-- Results Display Area -->
+                <div x-show="searchAttempted" class="pt-4 max-w-2xl mx-auto">
+                    
+                    <!-- Result Found -->
+                    <template x-if="searchResults.length > 0">
+                        <div class="space-y-4">
+                            <h4 class="text-xs font-bold text-slate-500 dark:text-purple-300">نتایج پیدا شده (<span x-text="searchResults.length"></span>):</h4>
+                            <template x-for="item in searchResults" :key="item.id">
+                                <div class="glass-card hover-lift p-5 space-y-3 relative border-l-4 border-l-pink-500 dark:border-l-purple-500">
+                                    <div class="flex justify-between items-center border-b border-slate-200/60 dark:border-purple-800/60 pb-2">
+                                        <div class="flex items-center space-x-2 space-x-reverse">
+                                            <span class="font-mono font-black text-pink-600 dark:text-purple-300" x-text="item.id"></span>
+                                            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 font-bold" x-text="item.status"></span>
+                                        </div>
+                                        <span class="text-[11px] text-slate-400" x-text="'ثبت شده: ' + item.createdAt"></span>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                        <div><span class="text-slate-400">مراجعه‌کننده:</span> <strong x-text="item.name"></strong></div>
+                                        <div>
+                                            <span class="text-slate-400">شماره تماس:</span> 
+                                            <a :href="'tel:' + item.phone" class="font-bold text-pink-600 dark:text-purple-300 hover:underline" x-text="item.phone" dir="ltr"></a>
+                                        </div>
+                                        <div><span class="text-slate-400">خدمت رزرو شده:</span> <strong x-text="item.service"></strong></div>
+                                        <div><span class="text-slate-400">تاریخ نوبت:</span> <strong x-text="item.date"></strong></div>
+                                        <div><span class="text-slate-400">ساعت حضور:</span> <strong class="text-pink-600 dark:text-purple-300" x-text="item.time"></strong></div>
+                                        <div><span class="text-slate-400">متخصص اکستنشن:</span> <strong>رویا حسن‌زاده</strong></div>
+                                    </div>
+
+                                    <div class="pt-2 flex justify-end">
+                                        <a :href="'tel:' + item.phone" class="liquid-btn liquid-btn-secondary px-4 py-1.5 text-xs flex items-center space-x-1.5 space-x-reverse">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                            <span>تماس مستقیم با کاربر</span>
+                                        </a>
+                                    </div>
+
+                                    <template x-if="item.notes">
+                                        <p class="text-[11px] text-slate-500 dark:text-purple-300/80 pt-1 bg-pink-50/50 dark:bg-purple-950/40 p-2 rounded-xl">
+                                            📝 توضیحات: <span x-text="item.notes"></span>
+                                        </p>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+
+                    <!-- No Results -->
+                    <template x-if="searchResults.length === 0">
+                        <div class="text-center py-8 glass-card p-6 space-y-3">
+                            <p class="text-sm font-bold text-red-500">هیچ نوبتی با اطلاعات وارد شده یافت نشد.</p>
+                            <p class="text-xs text-slate-500">لطفاً کد پیگیری یا شماره همراه را مجدداً بررسی کنید.</p>
+                        </div>
+                    </template>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section x-show="activeTab === 'services'" class="space-y-6" x-cloak>
+            <div class="text-center space-y-2">
+                <h3 class="text-2xl font-extrabold">خدمات و تعرفه‌های تخصصی</h3>
+                <p class="text-xs text-slate-500 dark:text-purple-300">تمامی خدمات با بهترین متریال و چسب‌های ضد حساسیت انجام می‌شود</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="service in services" :key="service.id">
+                    <div class="glass-card hover-lift p-6 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-extrabold text-lg text-pink-600 dark:text-purple-300" x-text="service.name"></h4>
+                                <span class="text-xs font-bold px-3 py-1 rounded-full bg-pink-100 dark:bg-purple-900/80 text-pink-700 dark:text-purple-200" x-text="service.duration"></span>
+                            </div>
+                            <p class="text-xs leading-relaxed text-slate-600 dark:text-purple-200/80" x-text="service.desc"></p>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-200/60 dark:border-purple-800/60 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-slate-400 block">هزینه خدمت:</span>
+                                <span class="font-black text-base text-slate-800 dark:text-purple-100" x-text="service.price + ' تومان'"></span>
+                            </div>
+                            <button @click="selectedService = service; activeTab = 'booking'; bookingStep = 2;" class="liquid-btn liquid-btn-primary px-4 py-2 text-xs">
+                                رزرو این خدمت
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+
+        <section x-show="activeTab === 'about'" class="space-y-6" x-cloak>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- About Card -->
+                <div class="glass-card hover-lift p-6 md:p-8 space-y-4 animate-float-subtle">
+                    <div class="flex items-center space-x-3 space-x-reverse">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-400 to-rose-500 dark:from-purple-800 dark:to-purple-500 flex items-center justify-center text-white font-black text-xl shadow-md logo-glow">
+                            R
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold">رویا حسن‌زاده | متخصص اکستنشن مژه</h3>
+                            <p class="text-xs text-pink-600 dark:text-purple-300 font-medium">Lash Vibe By Roya </p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs md:text-sm leading-relaxed text-slate-600 dark:text-purple-200/90 text-justify">
+                        در مرکز تخصصی <strong>Lash vibe by roya</strong>، اولویت اصلی ما سلامت مژه‌های طبیعی شما در کنار خلق نگاهی متمایز و جذاب است. تمامی افکت‌های کاشت و اکستنشن (کلاسیک، والیوم و مگا والیوم) بر اساس مپ اختصاصی فرم چشمان شما طراحی و اجرا می‌گردد.
+                    </p>
+
+                    <div class="p-3 rounded-2xl bg-pink-50/80 dark:bg-purple-950/50 text-xs space-y-1.5 border border-pink-200/60 dark:border-purple-800/50">
+                        <div class="flex items-center space-x-2 space-x-reverse font-semibold">
+                            <span class="text-pink-500">✨</span>
+                            <span>استفاده از افکت‌های اسپایک، ویسپی، گربه‌ای و عروسکی</span>
+                        </div>
+                        <div class="flex items-center space-x-2 space-x-reverse font-semibold">
+                            <span class="text-pink-500">✨</span>
+                            <span>چسب‌های اورجینال بدون گاز و ضد حساسیت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info Card with Clickable Phone -->
+                <div class="glass-card hover-lift p-6 md:p-8 space-y-5 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold border-b border-pink-200 dark:border-purple-800 pb-2">اطلاعات تماس و ساعت کاری</h3>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="flex items-center space-x-3 space-x-reverse">
+                                <span class="p-2.5 rounded-xl bg-pink-100 dark:bg-purple-900 text-pink-600 dark:text-purple-300 shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                </span>
+                                <div>
+                                    <span class="text-slate-400 block">ساعات کاری:</span>
+                                    <strong class="text-sm">۱۰:۰۰ صبح الی ۲۰:۰۰ شب (همه‌روزه با تعیین وقت قبلی)</strong>
+                                </div>
+                            </div>
+
+                            <a href="https://instagram.com/Lashvibebyroya" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 space-x-reverse group p-2 rounded-2xl hover:bg-pink-100/50 dark:hover:bg-purple-900/50 transition-colors">
+    <span class="p-2.5 rounded-xl bg-pink-100 dark:bg-purple-900 text-pink-600 dark:text-purple-300 shadow-sm group-hover:scale-110 transition-transform">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+    </span>
+    <div>
+        <span class="text-slate-400 block">اینستاگرام (برای ورود کلیک کنید):</span>
+        <strong class="text-sm font-mono text-pink-600 dark:text-purple-300 group-hover:underline">@Lashvibebyroya</strong>
+    </div>
+</a>
+                            </div>
+
+                            <!-- DIRECT CLICKABLE TEL LINK -->
+                            <a href="tel:09939006148" class="flex items-center space-x-3 space-x-reverse group p-2 rounded-2xl hover:bg-pink-100/50 dark:hover:bg-purple-900/50 transition-colors">
+                                <span class="p-2.5 rounded-xl bg-pink-100 dark:bg-purple-900 text-pink-600 dark:text-purple-300 shadow-sm group-hover:scale-110 transition-transform">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </span>
+                                <div>
+                                    <span class="text-slate-400 block text-[11px]">شماره پشتیبانی (برای تماس کلیک کنید):</span>
+                                    <strong class="text-sm font-mono text-pink-600 dark:text-purple-300 group-hover:underline" dir="ltr">0993 900 6148</strong>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="tel:09939006148" class="w-full liquid-btn liquid-btn-primary py-3 text-xs flex items-center justify-center space-x-2 space-x-reverse">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span>تماس تلفنی برای رزرو</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Glass Container -->
+    <footer class="w-full px-4 py-4 mt-8">
+        <div class="max-w-6xl mx-auto glass-card px-6 py-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-purple-300 gap-2">
+            <div>
+                © ۱۴۰۵ تمامی حقوق محفوظ است | <strong>Lash vibe by roya</strong>
+            </div>
+            <a href="tel:09939006148" class="font-medium text-[11px] text-pink-600 dark:text-purple-400 hover:underline" dir="ltr">
+                📞 پشتیبانی 
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('app', () => ({
+                darkMode: false,
+                activeTab: 'booking',
+
+                // Services Data
+                services: [
+                    { id: 'classic', name: 'اکستنشن مژه کلاسیک', price: '650,000', duration: '2 ساعت', desc: 'کاشت تار به تار و طبیعی برای استفاده روزمره با ظاهری بسیار شیک.' },
+                    { id: 'volume', name: 'اکستنشن مژه والیوم', price: '850,000', duration: '2 ساعت', desc: 'حجم‌دهی چشمگیر با مژه‌های ابریشمی سبک بدون سنگینی روی پلک.' },
+                    { id: 'megavolume', name: 'اکستنشن مگا والیوم', price: '1,100,000', duration: '2.5 ساعت', desc: 'حجم فوق‌العاده مشکی و پرحجم مناسب برای مراسم و علاقه‌مندان نگاه‌های جذاب.' },
+                    { id: 'lift', name: 'لیفت و لمینت مژه', price: '500,000', duration: '1 ساعت', desc: 'تقویت و فر مژه طبیعی با مواد حاوی بوتاکس و آرگان.' },
+                    { id: 'repair', name: 'ترمیم مژه تخصصی', price: '450,000', duration: '1.5 ساعت', desc: 'پر کردن و فرم‌دهی مجدد مژه‌ها پس از ۳ الی ۴ هفته.' }
+                ],
+
+                // Booking Wizard State
+                bookingStep: 1,
+                selectedService: null,
+                selectedDateObj: null,
+                selectedTime: '',
+                customerName: '',
+                customerPhone: '',
+                customerNotes: '',
+                lastReceipt: null,
+
+                // Available Dates (Next 10 Days Jalali Calendar)
+                availableDates: [],
+                
+                // Base Time Slots Template
+                defaultSlots: [
+                    { id: '10-12', label: '10:00 الی 12:00' },
+                    { id: '12-14', label: '12:00 الی 14:00' },
+                    { id: '14-16', label: '14:00 الی 16:00' },
+                    { id: '16-18', label: '16:00 الی 18:00' },
+                    { id: '18-20', label: '18:00 الی 20:00' }
+                ],
+                activeTimeSlots: [],
+
+                // Search & Tracking State
+                searchQuery: '',
+                searchResults: [],
+                searchAttempted: false,
+
+                // Bookings Store (Database simulation)
+                bookings: [],
+
+                // Toast Notification
+                toast: {
+                    show: false,
+                    message: ''
+                },
+
+                init() {
+                    // Check saved theme
+                    const savedTheme = localStorage.getItem('lashvibe_theme');
+                    if (savedTheme === 'dark') {
+                        this.darkMode = true;
+                    }
+
+                    // Generate upcoming 10 Jalali dates
+                    this.generateNext10DaysJalali();
+
+                    // Load stored bookings or populate demo booking
+                    const stored = localStorage.getItem('lashvibe_bookings');
+                    if (stored) {
+                        try {
+                            this.bookings = JSON.parse(stored);
+                        } catch (e) {
+                            this.bookings = [];
+                        }
+                    } 
+                    
+                    if (!this.bookings || this.bookings.length === 0) {
+                        // Pre-loaded Demo Booking with direct phone
+                        const todayJalali = this.availableDates[0]?.fullJalali || '۱۴۰۵/۰۷/۰۱';
+                        this.bookings = [{
+                            id: 'LV-1001',
+                            name: 'سارا احمدی',
+                            phone: '09939006148',
+                            service: 'اکستنشن مژه والیوم',
+                            date: todayJalali,
+                            isoDate: this.availableDates[0]?.isoDate || '',
+                            time: '14:00 الی 16:00',
+                            notes: 'افکت گربه‌ای C اسپایک مد نظرم است',
+                            status: 'تأیید شده',
+                            createdAt: todayJalali
+                        }];
+                        localStorage.setItem('lashvibe_bookings', JSON.stringify(this.bookings));
+                    }
+
+                    // Set initial date & slots
+                    if (this.availableDates.length > 0) {
+                        this.selectedDateObj = this.availableDates[0];
+                        this.checkSlotAvailability();
+                    }
+                },
+
+                toggleTheme() {
+                    this.darkMode = !this.darkMode;
+                    localStorage.setItem('lashvibe_theme', this.darkMode ? 'dark' : 'light');
+                },
+
+                // Generate Jalali Dates for EXACTLY NEXT 10 DAYS
+                generateNext10DaysJalali() {
+                    const days = ['یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'];
+                    const result = [];
+                    const today = new Date();
+
+                    for (let i = 0; i < 10; i++) {
+                        const d = new Date(today);
+                        d.setDate(today.getDate() + i);
+
+                        const dayName = i === 0 ? 'امروز' : i === 1 ? 'فردا' : days[d.getDay()];
+                        
+                        // Formats to Jalali string like "۱۴۰۳/۰۷/۰۵" or "۵ مهر"
+                        const jalaliShort = new Intl.DateTimeFormat('fa-IR-u-nu-latn', { month: 'short', day: 'numeric' }).format(d);
+                        const jalaliFull = new Intl.DateTimeFormat('fa-IR-u-nu-latn', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+                        
+                        // Standard YYYY-MM-DD ISO for database key pairing
+                        const isoDate = d.toISOString().split('T')[0];
+
+                        result.push({
+                            dayName: dayName,
+                            jalali: jalaliShort,
+                            fullJalali: `${dayName} (${jalaliFull})`,
+                            isoDate: isoDate
+                        });
+                    }
+
+                    this.availableDates = result;
+                },
+
+                // Dynamic Database check for Slot Availability
+                checkSlotAvailability() {
+                    if (!this.selectedDateObj) return;
+
+                    this.activeTimeSlots = this.defaultSlots.map(slot => {
+                        // Check if booking exists in database for this specific date + time slot
+                        const isBooked = this.bookings.some(b => 
+                            (b.isoDate === this.selectedDateObj.isoDate || b.date === this.selectedDateObj.fullJalali) && 
+                            b.time === slot.label
+                        );
+
+                        return {
+                            ...slot,
+                            isBooked: isBooked
+                        };
+                    });
+                },
+
+                normalizeDigits(str) {
+                    if (!str) return '';
+                    return str
+                        .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+                        .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+                },
+
+                submitBooking() {
+                    if (!this.customerName || !this.customerPhone || !this.selectedService || !this.selectedDateObj) return;
+
+                    // Generate random tracking code LV-XXXX
+                    const randomCode = 'LV-' + Math.floor(1000 + Math.random() * 9000);
+                    
+                    const newBooking = {
+                        id: randomCode,
+                        name: this.customerName.trim(),
+                        phone: this.normalizeDigits(this.customerPhone.trim()),
+                        service: this.selectedService.name,
+                        date: this.selectedDateObj.fullJalali,
+                        isoDate: this.selectedDateObj.isoDate,
+                        time: this.selectedTime,
+                        notes: this.customerNotes.trim(),
+                        status: 'تأیید شده',
+                        createdAt: new Intl.DateTimeFormat('fa-IR-u-nu-latn').format(new Date())
+                    };
+
+                    this.bookings.unshift(newBooking);
+                    localStorage.setItem('lashvibe_bookings', JSON.stringify(this.bookings));
+
+                    // Refresh slot dynamic status
+                    this.checkSlotAvailability();
+
+                    this.lastReceipt = newBooking;
+                    this.bookingStep = 4;
+                    this.showToast('نوبت شما با موفقیت ثبت شد ✨');
+                },
+
+                performSearch() {
+                    if (!this.searchQuery.trim()) return;
+                    this.searchAttempted = true;
+                    
+                    const query = this.normalizeDigits(this.searchQuery.trim().toLowerCase());
+                    this.searchResults = this.bookings.filter(b => 
+                        b.id.toLowerCase().includes(query) || 
+                        this.normalizeDigits(b.phone).includes(query)
+                    );
+                },
+
+                resetBooking() {
+                    this.bookingStep = 1;
+                    this.selectedService = null;
+                    this.selectedTime = '';
+                    this.customerName = '';
+                    this.customerPhone = '';
+                    this.customerNotes = '';
+                    this.lastReceipt = null;
+                    if (this.availableDates.length > 0) {
+                        this.selectedDateObj = this.availableDates[0];
+                        this.checkSlotAvailability();
+                    }
+                },
+
+                async copyToClipboard(text) {
+                    if (!text) return;
+                    try {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            await navigator.clipboard.writeText(text);
+                        } else {
+                            const el = document.createElement('textarea');
+                            el.value = text;
+                            document.body.appendChild(el);
+                            el.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(el);
+                        }
+                        this.showToast('کد پیگیری با موفقیت کپی شد! 📋');
+                    } catch (err) {
+                        this.showToast('کپی کد با خطا مواجه شد');
+                    }
+                },
+
+                showToast(msg) {
+                    this.toast.message = msg;
+                    this.toast.show = true;
+                    setTimeout(() => {
+                        this.toast.show = false;
+                    }, 3500);
+                }
+            }));
+        });
+    </script>
+</body>
+</html>
